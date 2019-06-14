@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kubia
+spec:
+  replicas: 3
+  selector:
+    app: simplenodejs
+  template:
+    metadata:
+      labels:
+        app: simplenodejs
+    spec:
+      containers:
+      - name: simplenodejs
+        image: 713432144879.dkr.ecr.ap-southeast-2.amazonaws.com/simplenodejs
+        ports:
+        - containerPort: 8080

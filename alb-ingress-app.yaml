@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "ingress"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: demoapp
+spec:
+  rules:
+  - host: nginx.pdxdiver.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-nodeport
+          servicePort: 80
+  - host: simplenodejs.pdxdiver.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: simplenodejs-nodeport
+          servicePort: 80
